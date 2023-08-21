@@ -18,8 +18,36 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Hoş Geldin, ${widget.username}"),
       ),
-      body: const Center(
-        child: Text("HomePage"),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            MaterialButton(
+                color: Colors.red,
+                child: const Text('ListUser'),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/listuser");
+                }),
+            // MaterialButton(
+            //     color: Colors.blue,
+            //     child: const Text('hahaha'),
+            //     onPressed: () {
+            //       print('mavi');
+            //     }),
+            // MaterialButton(
+            //     color: Colors.red,
+            //     child: const Text('buton1'),
+            //     onPressed: () {
+            //       print("sasass");
+            //     }),
+            // MaterialButton(
+            //     color: Colors.blue,
+            //     child: const Text('hahaha'),
+            //     onPressed: () {
+            //       print('mavi');
+            //     })
+          ],
+        ),
       ),
     );
   }

@@ -1,19 +1,18 @@
-import 'package:deneme/home_page.dart';
-import 'package:deneme/kayit_ol.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class KayitOl extends StatefulWidget {
+  const KayitOl({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  // ignore: no_logic_in_create_state
+  State<StatefulWidget> createState() => _KayitOlState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+// ignore: unused_element
+class _KayitOlState extends State<KayitOl> {
   late String username;
   late String password;
   final _formkey = GlobalKey<FormState>();
-  void navigateToKayitOlPage(BuildContext context) {}
 
   @override
   Widget build(BuildContext context) {
@@ -71,21 +70,6 @@ class _LoginPageState extends State<LoginPage> {
                   password = value!;
                 },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  MaterialButton(
-                      child: const Text("Üye ol"),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => const KayitOl())));
-                      }),
-                  MaterialButton(
-                      child: const Text("Şifremi Unuttum"), onPressed: () {}),
-                ],
-              ),
               _loginButton()
             ],
           ),
@@ -99,35 +83,9 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: () {
           if (_formkey.currentState!.validate()) {
             _formkey.currentState!.save();
-            // Navigator.pushNamed(context, "/homepage");
+            Navigator.pushNamed(context, "/");
 
             // debugPrint("usename : $username , password: $password");
-            if (username == "a" && password == "a") {
-              debugPrint("giriş başarili");
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomePage(username: username),
-                ),
-              );
-            } else {
-              showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text("Hata"),
-                      content: const Text("Giriş bilgileriniz hatalı"),
-                      actions: <Widget>[
-                        MaterialButton(
-                            child: const Text("Geridön"),
-                            onPressed: () {
-                              Navigator.pushNamed(context, "/");
-                            })
-                      ],
-                    );
-                  });
-            }
           }
         },
       );

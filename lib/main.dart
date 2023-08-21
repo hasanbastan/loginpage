@@ -1,4 +1,6 @@
 import 'package:deneme/home_page.dart';
+import 'package:deneme/kayit_ol.dart';
+import 'package:deneme/list_user.dart';
 import 'package:deneme/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         "/": (context) => const LoginPage(),
-        "/homepage": (context) => const HomePage()
+        "/homepage": (context) => const HomePage(),
+        "/kayitol": (context) => const KayitOl(),
+        "/listuser": (context) => const ListUser(),
       },
     );
   }
