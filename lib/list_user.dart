@@ -27,12 +27,12 @@ class _ListUserState extends State<ListUser> {
   Future callUsers() async {
     try {
       final response = await http.get(url);
-      print(response.body);
+      // print(response.body);
       if (response.statusCode == 200) {
         var result = usersFromJson(response.body);
         if (mounted) {
           setState(() {
-            counter = result.data.length;
+            counter = result.users.length;
             usersResult = result;
           });
           return result;
@@ -49,7 +49,6 @@ class _ListUserState extends State<ListUser> {
   @override
   void initState() {
     super.initState();
-    print("initstate");
     callUsers();
   }
 
@@ -62,25 +61,49 @@ class _ListUserState extends State<ListUser> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: ListView.builder(
-            itemCount: counter,
-            itemBuilder: (BuildContext context, int index) {
-              return const ListTile(
-                title: Text('buton'),
-                subtitle: Text('aaa'),
-                leading: CircleAvatar(
-                  backgroundColor: Color.fromRGBO(90, 14, 39, 1),
-                ),
-              );
-            },
-          ),
-        ),
+            padding: const EdgeInsets.all(20.0),
+            child: ListView.builder(
+              itemCount: counter,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(
+                      vertical:
+                          10), // İstediğiniz boşluk değerini ayarlayabilirsiniz
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Kutunun arka plan rengi
+                    borderRadius:
+                        BorderRadius.circular(10), // Kutu kenar yuvarlatması
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5), // Gölge rengi
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3), // Gölge konumu
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    title: Text(usersResult.users[index].username),
+                    subtitle: Text(usersResult.users[index].userTitle),
+                    leading: CircleAvatar(
+                      backgroundColor: const Color.fromRGBO(117, 183, 229, 1),
+                      child: Text(
+                        usersResult.users[index].id.toString(),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            )),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromRGBO(117, 183, 229, 1),
         onPressed: () {
           callUsers();
         },
+        child: const Icon(Icons.refresh),
       ),
     );
   }

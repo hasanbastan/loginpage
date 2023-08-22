@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
             // Navigator.pushNamed(context, "/homepage");
 
             // debugPrint("usename : $username , password: $password");
-            if (username == "a" && password == "a") {
+            if (username == "turkuvaz" && password == "123456") {
               debugPrint("giriş başarili");
               Navigator.push(
                 context,
